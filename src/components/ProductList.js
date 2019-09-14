@@ -11,7 +11,7 @@ const ProductList = () => {
           <Title name="our" title="products" />
           <div className="row">
             <ProductConsumer>
-              {({ products, productDetail, addToCart, handleDetail }) => {
+              {({ products }) => {
                 return products.map((product) => {
                   return <Product key={product.id} product={product} />;
                 });

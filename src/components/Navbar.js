@@ -12,7 +12,9 @@ const Navbar = () => {
             https://www.iconfinder.com/Makoto_msk */}
 
         <Link to="/">
-          <img src={logo} alt="store" className="navbar-brand" />
+          <ButtonContainer className="navbar-brand">
+            <i className="fas fa-store" />
+          </ButtonContainer>
         </Link>
         <ul className="navbar-nav align-items-center">
           <li className="nav-item ml-5">

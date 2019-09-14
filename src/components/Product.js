@@ -2,53 +2,65 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ProductConsumer } from '../context';
+import PropTypes from 'prop-types';
 
 const Product = ({ product }) => {
   const { id, title, img, price, inCart } = product;
 
-  const onClick = () => {
-    console.log('you clicked me');
-  };
+  // const onClick = () => {
+  //   console.log(`you clicked id ${id}`);
+  // };
   const addToCart = () => {
     console.log('add to cart');
   };
   return (
-    <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3">
-      <div className="card mb-5">
-        <div className="img-container p-5">
-          <Link to="/details">
-            <img
-              src={img}
-              alt="product"
-              className="card-img-top"
-              onClick={onClick}
-            />
-          </Link>
-          <button
-            className="cart-btn"
-            disabled={inCart ? true : false}
-            onClick={addToCart}
-          >
-            {inCart ? (
-              <p className="text-capitalize mb-0" disabled>
-                {' '}
-                in cart
-              </p>
-            ) : (
-              <i className="fas fa-cart-plus" />
-            )}
-          </button>
-        </div>
-        {/* card footer */}
-        <div className="card-footer d-flex justify-content-between">
-          <p className="align-self-center mb-0">{title}</p>
-          <h5 className="text-blue font-italic mb-0">
-            <span className="mr-0">$</span>
-            {price}
-          </h5>
-        </div>
-      </div>
-    </ProductWrapper>
+    <ProductConsumer>
+      {({ handleDetail, addToCart }) => {
+        // const { id, company, img, info, price, title, inCart } = productDetails;
+        return (
+          <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3">
+            <div className="card mb-5">
+              <div className="img-container p-5">
+                <Link to="/details">
+                  <img
+                    src={img}
+                    alt="product"
+                    className="card-img-top"
+                    onClick={() => {
+                      handleDetail(product);
+                    }}
+                  />
+                </Link>
+                <button
+                  className="cart-btn"
+                  disabled={inCart ? true : false}
+                  onClick={() => {
+                    addToCart(id);
+                  }}
+                >
+                  {inCart ? (
+                    <p className="text-capitalize mb-0" disabled>
+                      {' '}
+                      in cart
+                    </p>
+                  ) : (
+                    <i className="fas fa-cart-plus" />
+                  )}
+                </button>
+              </div>
+              {/* card footer */}
+              <div className="card-footer d-flex p-2 justify-content-between">
+                <p className="align-self-center mb-0">{title}</p>
+                <h5 className="text-blue font-italic mb-0">
+                  <span className="mr-0">$</span>
+                  {price}
+                </h5>
+              </div>
+            </div>
+          </ProductWrapper>
+        );
+      }}
+    </ProductConsumer>
   );
 };
 const ProductWrapper = styled.div`
@@ -99,5 +111,13 @@ const ProductWrapper = styled.div`
     cursor: pointer;
   }
 `;
-
+Product.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    img: PropTypes.string,
+    price: PropTypes.number,
+    inCart: PropTypes.bool
+  }).isRequired
+};
 export default Product;
