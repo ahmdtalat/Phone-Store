@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import Product from './Product';
 import Title from './Title';
 import { ProductConsumer } from '../context';

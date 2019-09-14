@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ProductConsumer } from '../context';
@@ -7,12 +7,6 @@ import PropTypes from 'prop-types';
 const Product = ({ product }) => {
   const { id, title, img, price, inCart } = product;
 
-  // const onClick = () => {
-  //   console.log(`you clicked id ${id}`);
-  // };
-  const addToCart = () => {
-    console.log('add to cart');
-  };
   return (
     <ProductConsumer>
       {({ handleDetail, addToCart }) => {
