@@ -6,7 +6,7 @@ import { ButtonContainer } from './Button';
 const Details = () => {
   return (
     <ProductConsumer>
-      {({ productDetails, addToCart, handleDetail }) => {
+      {({ productDetails, addToCart, openModal }) => {
         const { id, company, img, info, price, title, inCart } = productDetails;
         return (
           <div className="container py-5">
@@ -46,6 +46,7 @@ const Details = () => {
                   cart
                   onClick={() => {
                     addToCart(id);
+                    openModal(id);
                   }}
                   disabled={inCart ? true : false}
                 >

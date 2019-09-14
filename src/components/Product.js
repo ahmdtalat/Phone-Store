@@ -9,7 +9,7 @@ const Product = ({ product }) => {
 
   return (
     <ProductConsumer>
-      {({ handleDetail, addToCart }) => {
+      {({ handleDetail, addToCart, openModal }) => {
         // const { id, company, img, info, price, title, inCart } = productDetails;
         return (
           <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3">
@@ -30,6 +30,7 @@ const Product = ({ product }) => {
                   disabled={inCart ? true : false}
                   onClick={() => {
                     addToCart(id);
+                    openModal(id);
                   }}
                 >
                   {inCart ? (

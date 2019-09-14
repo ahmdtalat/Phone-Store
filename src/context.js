@@ -7,6 +7,21 @@ const ProductProvider = (props) => {
   const [products, setProducts] = useState([]);
   const [productDetails, setProductDetails] = useState(detailProduct);
   const [cart, setCart] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [modalProduct, setModalProduct] = useState(detailProduct);
+
+  // open modal
+  const openModal = (id) => {
+    const product = getItem(id);
+    setModalProduct(product);
+    setModal(true);
+  };
+
+  //close modal
+  const closeModal = () => {
+    setModal(false);
+  };
+
   // handle details
   const handleDetail = (product) => {
     setProductDetails(product);
@@ -48,7 +63,11 @@ const ProductProvider = (props) => {
         products: products,
         productDetails: productDetails,
         handleDetail: handleDetail,
-        addToCart: addToCart
+        addToCart: addToCart,
+        openModal: openModal,
+        closeModal: closeModal,
+        modal: modal,
+        modalProduct: modalProduct
       }}
     >
       {props.children}
