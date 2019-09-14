@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-const Product = () => {
-  return <div></div>;
+const Product = ({ product }) => {
+  return (
+    <Fragment>
+      <h2>{product.id}</h2>
+    </Fragment>
+  );
 };
 
 export default Product;

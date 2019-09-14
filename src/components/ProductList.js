@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import Product from './Product';
+import Title from './Title';
+import { ProductConsumer } from '../context';
+
 const ProductList = () => {
   return (
-    <div>
-      <Product />
-      <h3>Hello from product list</h3>
-    </div>
+    <Fragment>
+      <div className="py-5">
+        <div className="container">
+          <Title name="our" title="products" />
+          <div className="row">
+            <ProductConsumer>
+              {({ products, productDetail, addToCart, handleDetail }) => {
+                return products.map((product) => {
+                  return <Product key={product.id} product={product} />;
+                });
+              }}
+            </ProductConsumer>
+          </div>
+        </div>
+      </div>
+    </Fragment>
   );
 };
 
